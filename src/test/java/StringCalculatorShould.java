@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 class StringCalculatorShould {
     @Test
@@ -36,6 +38,14 @@ class StringCalculatorShould {
         var number = "//;\n1;2";
         int mathOperation = StringCalculator.Add(number);
         Assertions.assertEquals(3,mathOperation);
+    }
+
+    @Test
+    void print_exception_if_there_are_negative_numbers(){
+        var errorMessage = "error: negatives not allowed -1 -2";
+        NegativeNumberException capturedExcepcion = assertThrows(NegativeNumberException.class, () ->
+                StringCalculator.Add("//;\n-1;-2"));
+        Assertions.assertEquals(errorMessage, capturedExcepcion.getMessage());
     }
 
 }
