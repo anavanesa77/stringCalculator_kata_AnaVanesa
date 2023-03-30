@@ -10,7 +10,7 @@ public class StringCalculator {
     }
 
     private static List<Integer> extractNumbers(String text) {
-        var textOperationNumbers = List.of(text.split(","));
+        var textOperationNumbers = List.of(text.replaceAll("\n",",").split(","));
         return textOperationNumbers.stream().map(Integer::valueOf).toList();
     }
 
