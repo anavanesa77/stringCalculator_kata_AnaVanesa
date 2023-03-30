@@ -31,4 +31,11 @@ class StringCalculatorShould {
         Assertions.assertEquals(6, mathOperation);
     }
 
+    @Test
+    void print_sum_of_numbers_with_any_delimiter() {
+        var number = "//;\n1;2";
+        int mathOperation = StringCalculator.Add(number);
+        Assertions.assertEquals(3,mathOperation);
+    }
+
 }
