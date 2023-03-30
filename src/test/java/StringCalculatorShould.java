@@ -25,21 +25,18 @@ class StringCalculatorShould {
         int mathOperation = StringCalculator.Add(numbers);
         Assertions.assertEquals(10,mathOperation);
     }
-
     @Test
     void print_sum_of_numbers_without_line_break() {
         var number = "1\n2\n3";
         int mathOperation = StringCalculator.Add(number);
         Assertions.assertEquals(6, mathOperation);
     }
-
     @Test
     void print_sum_of_numbers_with_any_delimiter() {
         var number = "//;\n1;2";
         int mathOperation = StringCalculator.Add(number);
         Assertions.assertEquals(3,mathOperation);
     }
-
     @Test
     void print_exception_if_there_are_negative_numbers(){
         var errorMessage = "error: negatives not allowed -1 -2";
