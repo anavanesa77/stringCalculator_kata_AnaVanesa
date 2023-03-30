@@ -9,12 +9,15 @@ public class StringCalculator {
         return  toAddNumbers(sumOfNumbers);
     }
 
-    private static List<Integer> extractNumbers(String numbers) {
-        var textOperationNumbers = List.of(numbers.split(","));
+    private static List<Integer> extractNumbers(String text) {
+        var textOperationNumbers = List.of(text.split(","));
         return textOperationNumbers.stream().map(Integer::valueOf).toList();
     }
 
     private static Integer toAddNumbers(List<Integer> operationNumbers) {
         return operationNumbers.stream().reduce(0, Integer::sum);
+
     }
+
 }
+
