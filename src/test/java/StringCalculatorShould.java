@@ -17,4 +17,11 @@ class StringCalculatorShould {
         Assertions.assertEquals(1,mathOperation);
     }
 
+    @Test
+    void print_sum_of_the_numbers() {
+        String numbers = "1,2,3,4";
+        int mathOperation = StringCalculator.Add(numbers);
+        Assertions.assertEquals(10,mathOperation);
+    }
+
 }
