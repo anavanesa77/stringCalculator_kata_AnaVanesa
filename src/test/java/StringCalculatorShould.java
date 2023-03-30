@@ -47,4 +47,12 @@ class StringCalculatorShould {
                 StringCalculator.Add("//;\n-1;-2"));
         Assertions.assertEquals(errorMessage, capturedExcepcion.getMessage());
     }
+
+    @Test
+    void print_the_sum_of_numbers_greater_than_a_thousand() throws NegativeNumberException{
+        var number = "1001";
+        int mathOperation = StringCalculator.Add(number);
+        Assertions.assertEquals(2,mathOperation);
+
+    }
 }
