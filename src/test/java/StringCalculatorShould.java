@@ -10,4 +10,11 @@ class StringCalculatorShould {
         Assertions.assertEquals(0,  mathOperation);
     }
 
+    @Test
+    void print_the_same_number() {
+        String number = "1";
+        int mathOperation  = StringCalculator.Add(number);
+        Assertions.assertEquals(1,mathOperation);
+    }
+
 }
