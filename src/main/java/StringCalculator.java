@@ -9,15 +9,19 @@ public class StringCalculator {
         if (numbers.startsWith("/")) {
             var delimiter = numbers.substring(2, 3);
             var sumOfNumbers = extractNumbersWithDelimiter(numbers, delimiter);
-            var negativeNumbers = extractListNegativeNumber(sumOfNumbers);
-            failIfThereAreNegativeNumbers(negativeNumbers);
+            executeErrorIfThereAreNegativeNumbers(sumOfNumbers);
             return toAddNumbers(sumOfNumbers);
         }
         var sumOfNumbers = extractNumbersWithoutDelimiter(numbers);
-        var negativeNumbers = extractListNegativeNumber(sumOfNumbers);
-        failIfThereAreNegativeNumbers(negativeNumbers);
+        executeErrorIfThereAreNegativeNumbers(sumOfNumbers);
         return toAddNumbers(sumOfNumbers);
     }
+
+    private static void executeErrorIfThereAreNegativeNumbers(List<Integer> sumOfNumbers) throws NegativeNumberException {
+        var negativeNumbers = extractListNegativeNumber(sumOfNumbers);
+        failIfThereAreNegativeNumbers(negativeNumbers);
+    }
+
     private static List<Integer> extractNumbersWithoutDelimiter(String text) {
         var textOperationNumbers = List.of(text.replaceAll("\n", ",").split(","));
         return textOperationNumbers.stream().map(Integer::valueOf).toList();
@@ -29,7 +33,7 @@ public class StringCalculator {
         var textNumbers = List.of(text.substring(4).split(delimiter));
         return textNumbers.stream().map(Integer::valueOf).toList();
     }
-    private static List<Integer> extractListNegativeNumber(List<Integer> operationNumbers) throws NegativeNumberException {
+    private static List<Integer> extractListNegativeNumber(List<Integer> operationNumbers) {
         List negativeNumbers = new ArrayList();
         for (int numbers : operationNumbers) {
             if (numbers < 0) {
