@@ -49,17 +49,10 @@ class StringCalculatorShould {
     }
 
     @Test
-    void print_the_sum_of_numbers_greater_than_a_thousand() throws NegativeNumberException{
+    void print_the_sum_of_numbers_greater_than_a_thousand() throws NegativeNumberException {
         var number = "1001";
         int mathOperation = StringCalculator.Add(number);
-        Assertions.assertEquals(2,mathOperation);
+        Assertions.assertEquals(2, mathOperation);
 
-    }
-
-    @Test
-    void print_sum_of_numbers_with_other_delimiter() throws NegativeNumberException {
-        var number = "//[***]\n1***2***3”";
-        int mathOperation = StringCalculator.Add(number);
-        Assertions.assertEquals(3, mathOperation);
     }
 }

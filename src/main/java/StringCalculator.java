@@ -1,7 +1,5 @@
-import javax.naming.directory.Attribute;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class StringCalculator {
@@ -69,14 +67,12 @@ public class StringCalculator {
         failIfThereAreNegativeNumbers(negativeNumbers);
     }
 
-    private static Integer addNumbersGreaterThanThousand (int sumNumber){
-        var sumThousand = 0;
+    private static Integer addNumbersGreaterThanThousand(int sumNumber) {
+        var numberAsText = Integer.toString(sumNumber);
         if (sumNumber >= 1000) {
-            for (int i = 0; i < Integer.toString(sumNumber).length() ; i++) {
-                String sumDigits = String.valueOf(Integer.toString(sumNumber).charAt(i));
-                sumThousand += Integer.parseInt((sumDigits));
-            }
-            return sumThousand;
+            return Arrays.stream(numberAsText.split(""))
+                    .map(Integer::parseInt)
+                    .reduce(0, Integer::sum);
         }
         return sumNumber;
     }
