@@ -22,18 +22,8 @@ public class StringCalculator {
     }
 
     private static Integer addNumbers(List<Integer> operationNumbers) {
-        var suma = operationNumbers.stream().reduce(0, Integer::sum);
-        var longitud = Integer.toString(suma).length();
-        var sumaMil = 0;
-        if (longitud >= 4) {
-            for (int i = 0; i < longitud; i++) {
-                String sumaNumero = String.valueOf(Integer.toString(suma).charAt(i));
-                sumaMil += Integer.parseInt((sumaNumero));
-            }
-            System.out.println(sumaMil);
-            return sumaMil;
-        }
-        return suma;
+        var sum = operationNumbers.stream().reduce(0, Integer::sum);
+        return addNumbersGreaterThanThousand(sum);
     }
 
     private static List<Integer> extractNumbersWithDelimiter(String text, String delimiter) {
@@ -77,6 +67,18 @@ public class StringCalculator {
     private static void executeErrorIfThereAreNegativeNumbers(List<Integer> sumOfNumbers) throws NegativeNumberException {
         var negativeNumbers = extractListNegativeNumber(sumOfNumbers);
         failIfThereAreNegativeNumbers(negativeNumbers);
+    }
+
+    private static Integer addNumbersGreaterThanThousand (int sumNumber){
+        var sumThousand = 0;
+        if (sumNumber >= 1000) {
+            for (int i = 0; i < Integer.toString(sumNumber).length() ; i++) {
+                String sumDigits = String.valueOf(Integer.toString(sumNumber).charAt(i));
+                sumThousand += Integer.parseInt((sumDigits));
+            }
+            return sumThousand;
+        }
+        return sumNumber;
     }
 
 }
