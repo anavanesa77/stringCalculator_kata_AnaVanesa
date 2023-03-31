@@ -1,4 +1,7 @@
+import javax.naming.directory.Attribute;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class StringCalculator {
@@ -6,6 +9,7 @@ public class StringCalculator {
         if (numbers.equals("")) {
             return 0;
         }
+
         if (numbers.startsWith("/")) {
             var delimiter = numbers.substring(2, 3);
             var sumOfNumbers = extractNumbersWithDelimiter(numbers, delimiter);
@@ -18,12 +22,23 @@ public class StringCalculator {
     }
 
     private static Integer addNumbers(List<Integer> operationNumbers) {
-        return operationNumbers.stream().reduce(0, Integer::sum);
+        var suma = operationNumbers.stream().reduce(0, Integer::sum);
+        var longitud = Integer.toString(suma).length();
+        var sumaMil = 0;
+        if (longitud >= 4) {
+            for (int i = 0; i < longitud; i++) {
+                String sumaNumero = String.valueOf(Integer.toString(suma).charAt(i));
+                sumaMil += Integer.parseInt((sumaNumero));
+            }
+            System.out.println(sumaMil);
+            return sumaMil;
+        }
+        return suma;
     }
 
     private static List<Integer> extractNumbersWithDelimiter(String text, String delimiter) {
-        var textNumbers = List.of(text.substring(4).split(delimiter));
-        return textNumbers.stream().map(Integer::valueOf).toList();
+        var textOperationNumbers = List.of(text.substring(4).split(delimiter));
+        return textOperationNumbers.stream().map(Integer::valueOf).toList();
     }
 
     private static List<Integer> extractNumbersWithoutDelimiter(String text) {
@@ -63,5 +78,6 @@ public class StringCalculator {
         var negativeNumbers = extractListNegativeNumber(sumOfNumbers);
         failIfThereAreNegativeNumbers(negativeNumbers);
     }
+
 }
 
